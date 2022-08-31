@@ -1,8 +1,26 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import React from 'react';
 
-test('renders learn react link', () => {
+
+test('shows a button', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).not.toBeInTheDocument();
+  const hasButton = screen.getByRole('button', { name: /Press to Roll!/i });
+  expect(hasButton).toBeInTheDocument();
 });
+
+test('should be enabled', () => { 
+   render(<App/>)
+   const buttonEnabled = screen.getByRole('button', { name: /Press to Roll/i })
+   expect(buttonEnabled).not.toHaveAttribute('disabled')
+
+})
+
+// test('should be enabled', () => { 
+//   render(<App/>)
+//   const buttonEnabled = screen.getByRole('button', { name: /Press to Roll/i })
+//   expect(buttonEnabled).not.toHaveAttribute('disabled')
+
+//   fireEvent.click(buttonEnabled)
+//   expect(screen.getAllByRole(/Rolling.../i)).toBeInTheDocument()
+// })
